@@ -1,7 +1,9 @@
 <h1>User list:</h1>
 <ul>
     {% for user in All_users %}
-        <li><p>Username:{{ user.name }} Email:{{ user.email }}</p></li>
+        <strong>
+            <li><p>Username:{{ user.name }} <br> Email:{{ user.email }}</p></li>
+        </strong>
     {% endfor %}
 </ul>
 
