@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django import forms
+from django.core.validators import validate_email
 from django.http import HttpResponse
 from django.template import loader
 from .models import User
@@ -19,8 +20,18 @@ def add(request):
     if form.is_valid():
         instance = form.save(commit=False)
         if instance.name is not None and instance.email is not None:
-            instance.save()
+            try:
+                validate_email(instance.email)
+                instance.save()
 
+                template = loader.get_template("userAdded.html")
+                context = {}
+                return HttpResponse(template.render(context, request))
+
+            except forms.ValidationError:
+                template = loader.get_template("invalid.html")
+                context = {}
+                return HttpResponse(template.render(context, request))
 
     context = {"form": form }
     return HttpResponse(template.render(context,request))
