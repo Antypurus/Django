@@ -19,11 +19,9 @@ from Resgister.views import list
 from Resgister.views import add
 from Resgister.views import index
 
-app_name = "root"
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'list/',list),
-    path(r'add/',add),
+    path(r'list/', list),
+    path(r'add/', add),
     path(r'', index)
 ]
