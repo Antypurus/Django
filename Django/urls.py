@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Resgister.views import list
+from Resgister.views import add
 from Resgister.views import index
+
+app_name = "root"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'list/',list),
-    path(r'',index)
+    path(r'add/',add),
+    path(r'', index)
 ]

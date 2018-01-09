@@ -7,13 +7,15 @@ from .models import User
 def list(request):
     All_users = User.objects.all()
     template = loader.get_template("list.html")
-    context = {
-        "All_users": All_users
-    }
+    context = {"All_users": All_users}
+    return HttpResponse(template.render(context,request))
 
+def add(request):
+    template = loader.get_template("add.html")
+    context = {}
     return HttpResponse(template.render(context,request))
 
 def index(request):
-    html = ""
-    html += "<a href='/list/'>List Users</a>"
-    return HttpResponse(html)
+    template = loader.get_template("index.html")
+    context = {}
+    return HttpResponse(template.render(context,request))
